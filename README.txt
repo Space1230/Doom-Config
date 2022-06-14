@@ -1,1 +1,2 @@
-This is a simple Doom Emacs config that I use. I mainly use Emacs for org mode as a student, so many of my tweaks revolve around note taking. There are no crazy scripts here as I am a new Doom user and still very new to eLisp
+This is a simple Doom Emacs config that I use. I mainly use Emacs for org mode as a student, so many of my tweaks revolve around note taking. There are no crazy scripts here as I am a new Doom user and still very new to eLisp.
+One thing to note is I use smudge for spotify. I have hidden all my client secrets. You would have to add your own. I suggest looking at the smudge github to learn how to do this.
