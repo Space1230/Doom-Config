@@ -3,3 +3,4 @@
 *.log
 tmp/
 spotify-secrets.el
+custom.el
