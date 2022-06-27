@@ -126,3 +126,6 @@
 (map! :map org-mode-map
       :localleader :desc "push to Anki" :n "R" #'anki-editor-push-notes
       :localleader :n "z" #'anki-editor-insert-note)
+
+;; cc mode config
+(setq! +format-on-save-enabled-modes '(not c++-mode))
