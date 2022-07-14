@@ -129,3 +129,48 @@
 
 ;; cc mode config
 (setq! +format-on-save-enabled-modes '(not c++-mode))
+
+;; cc debug config
+(setq dap-auto-configure-mode t)
+(require 'dap-cpptools)
+(fset 'dap-quit
+   (kmacro-lambda-form [?  ?w ?j escape ?  ?b ?k ?y ?y ?  ?w ?j ?  ?b ?k ?  ?w ?q] 0 "%d"))
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"          "n" #'dap-next
+      :desc "dap step in"       "i" #'dap-step-in
+      :desc "dap step out"      "o" #'dap-step-out
+      :desc "dap continue"      "c" #'dap-continue
+      :desc "dap hydra"         "h" #'dap-hydra
+      :desc "dap debug restart" "r" #'dap-debug-restart
+      :desc "dap debug"         "s" #'dap-debug
+      :desc "dap quit"          "q" #'dap-quit
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent"  "r" #'dap-debug-recent
+      :desc "dap debug last"    "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+(dap-register-debug-template ;; until I figure out something better
+  "OpenGL Engine"
+  (list :type "cppdbg"
+        :request "launch"
+        :name "cpptools::Run Configuration"
+        :MIMode "gdb"
+        :program "/home/andys/Developement/OpenGl-Engine/build/engine"
+        :cwd "/home/andys/Developement/OpenGl-Engine"))
